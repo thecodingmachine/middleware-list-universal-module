@@ -1,0 +1,20 @@
+{
+    "name": "thecodingmachine/middleware-list-universal-module",
+    "description": "Cross-framework module providing a service containing a list of middlewares",
+    "license": "MIT",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "TheCodingMachine\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "container-interop/service-provider": "~0.2.0"
+    },
+    "require-dev": {
+        "puli/composer-plugin": "^1.0"
+    },
+    "minimum-stability": "beta",
+    "prefer-stable": true
+}
