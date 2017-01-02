@@ -1,5 +1,6 @@
 <?php
-declare(strict_types=1);
+
+declare (strict_types = 1);
 
 namespace TheCodingMachine;
 
@@ -15,8 +16,8 @@ class MiddlewareListServiceProvider implements ServiceProvider
     {
         return [
             self::MIDDLEWARES_QUEUE => [self::class, 'createPriorityQueue'],
-            self::MIDDLEWARES_EXCEPTION_QUEUE => [self::class,'createPriorityQueue'],
-            self::MIDDLEWARES_STRATIGILITY_EXCEPTION_QUEUE => [self::class,'createPriorityQueue'],
+            self::MIDDLEWARES_EXCEPTION_QUEUE => [self::class, 'createPriorityQueue'],
+            self::MIDDLEWARES_STRATIGILITY_EXCEPTION_QUEUE => [self::class, 'createPriorityQueue'],
         ];
     }
 
