@@ -43,27 +43,27 @@ Let's split the middlewares in 4 families:
 Based on those 4 families, the MiddlewareListServiceProvider provides a SPL Priority Queue that one can use to register any middleware at the right point in the queue.
 
 The service provider defines 16 constants you can use to insert a middleware at a given point:
-
-- `MiddlewareOrder::UTILITY_EARLY` (-50)
-- `MiddlewareOrder::UTILITY` (0)
-- `MiddlewareOrder::UTILITY_LATE` (50)
-- `MiddlewareOrder::ROUTER_EARLY` (950)
+    
+- `MiddlewareOrder::UTILITY_EARLY` (2050)
+- `MiddlewareOrder::UTILITY` (2000)
+- `MiddlewareOrder::UTILITY_LATE` (1950)
+- `MiddlewareOrder::ROUTER_EARLY` (1050)
 - `MiddlewareOrder::ROUTER` (1000)
-- `MiddlewareOrder::ROUTER_LATE` (1050)
-- `MiddlewareOrder::PAGE_NOT_FOUND_EARLY` (1950)
-- `MiddlewareOrder::PAGE_NOT_FOUND` (2000)
-- `MiddlewareOrder::PAGE_NOT_FOUND_LATE` (2050)
+- `MiddlewareOrder::ROUTER_LATE` (950)
+- `MiddlewareOrder::PAGE_NOT_FOUND_EARLY` (50)
+- `MiddlewareOrder::PAGE_NOT_FOUND` (0)
+- `MiddlewareOrder::PAGE_NOT_FOUND_LATE` (-50)
 
 As we saw, depending on whether you are using Stratigility or another middleware pipe, you have different error middlewares.
 Stratigility middlewares are typically at the very end of the queue, while other middlewares are typically at the very beginning.
 Hence 2 different priorities.
 
-- `MiddlewareOrder::EXCEPTION_EARLY` (-1050)
-- `MiddlewareOrder::EXCEPTION` (-1000)
-- `MiddlewareOrder::EXCEPTION_LATE` (-950)
-- `MiddlewareOrder::STRATIGILITY_EXCEPTION_EARLY` (2950)
-- `MiddlewareOrder::STRATIGILITY_EXCEPTION` (3000)
-- `MiddlewareOrder::STRATIGILITY_EXCEPTION_LATE` (3050)
+- `MiddlewareOrder::EXCEPTION_EARLY` (3050)
+- `MiddlewareOrder::EXCEPTION` (3000)
+- `MiddlewareOrder::EXCEPTION_LATE` (2950)
+- `MiddlewareOrder::STRATIGILITY_EXCEPTION_EARLY` (-950)
+- `MiddlewareOrder::STRATIGILITY_EXCEPTION` (-1000)
+- `MiddlewareOrder::STRATIGILITY_EXCEPTION_LATE` (-1050)
 
 Each "family" has 3 variants: EARLY, NORMAL and LATE, so you can add more fine grained tuning if you want a utility to be triggered before another one, etc...
 
