@@ -1,6 +1,6 @@
-# Stratigility universal module
+# http-interop middleware list universal module
 
-This package simply providers a middleware list to any [container-interop](https://github.com/container-interop/service-provider) compatible framework/container.
+This package simply providers an http-interop middleware list to any [container-interop](https://github.com/container-interop/service-provider) compatible framework/container.
 The middleware list is **empty**. Any package can come and add a middleware to the list. 
 
 ## Installation
@@ -40,10 +40,13 @@ Let's split the middlewares in 4 families:
 - **Page not found routers**: those are middlewares in charge of answering a 404 answer if no middleware has handled the request. This is the last "classical" middleware of the queue.
 - **Error handling middlewares**: Finally, at the very end of the queue, you will find the list of middlewares that handle errors and exceptions. They are in charge of logging or displaying error messages.
 
-Based on those 4 families, the MiddlewareListServiceProvider provides a SPL Priority Queue that one can use to register any middleware at the right point in the queue.
+Based on those 4 families, the `MiddlewareListServiceProvider` provides a SPL Priority Queue that one can use to register any middleware at the right point in the queue.
 
-The service provider defines 16 constants you can use to insert a middleware at a given point:
+The service provider defines 12 constants you can use to insert a middleware at a given point:
     
+- `MiddlewareOrder::EXCEPTION_EARLY` (3050)
+- `MiddlewareOrder::EXCEPTION` (3000)
+- `MiddlewareOrder::EXCEPTION_LATE` (2950)
 - `MiddlewareOrder::UTILITY_EARLY` (2050)
 - `MiddlewareOrder::UTILITY` (2000)
 - `MiddlewareOrder::UTILITY_LATE` (1950)
@@ -53,17 +56,6 @@ The service provider defines 16 constants you can use to insert a middleware at 
 - `MiddlewareOrder::PAGE_NOT_FOUND_EARLY` (50)
 - `MiddlewareOrder::PAGE_NOT_FOUND` (0)
 - `MiddlewareOrder::PAGE_NOT_FOUND_LATE` (-50)
-
-As we saw, depending on whether you are using Stratigility or another middleware pipe, you have different error middlewares.
-Stratigility middlewares are typically at the very end of the queue, while other middlewares are typically at the very beginning.
-Hence 2 different priorities.
-
-- `MiddlewareOrder::EXCEPTION_EARLY` (3050)
-- `MiddlewareOrder::EXCEPTION` (3000)
-- `MiddlewareOrder::EXCEPTION_LATE` (2950)
-- `MiddlewareOrder::STRATIGILITY_EXCEPTION_EARLY` (-950)
-- `MiddlewareOrder::STRATIGILITY_EXCEPTION` (-1000)
-- `MiddlewareOrder::STRATIGILITY_EXCEPTION_LATE` (-1050)
 
 Each "family" has 3 variants: EARLY, NORMAL and LATE, so you can add more fine grained tuning if you want a utility to be triggered before another one, etc...
 
