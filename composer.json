@@ -10,12 +10,6 @@
     },
     "require": {
         "php": ">=7.0",
-        "container-interop/service-provider": "~0.3.0"
-    },
-    "require-dev": {
-        "puli/cli": "^1.0",
-        "puli/composer-plugin": "^1.0"
-    },
-    "minimum-stability": "beta",
-    "prefer-stable": true
+        "container-interop/service-provider": "~0.4.0"
+    }
 }

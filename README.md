@@ -11,24 +11,14 @@ This package is typically used by packages providing middlewares.
 composer require thecodingmachine/middleware-list-universal-module
 ```
 
-If your container supports autodiscovery by Puli, there is nothing more to do.
+If your container supports autodiscovery by thecodingmachine/discovery, there is nothing more to do.
 Otherwise, you need to register the [`TheCodingMachine\MiddlewareListServiceProvider`](src/MiddlewareListServiceProvider.php) into your container.
 
 Refer to your framework or container's documentation to learn how to register *service providers*.
 
 ## Usage
 
-This module registers 3 services in your container:
-
-- The middleware queue is registered under the key `MiddlewareListServiceProvider::MIDDLEWARES_QUEUE`. This is a `\SPLPriorityQueue`.
-
-Now, depending on whether you are using [Stratigility](https://github.com/zendframework/zend-stratigility) or another PSR-7 middleware consumer (like [Relay](http://relayphp.com/)), the way exceptions routers are handled is different.
-
-Stratigility uses a special format for error middlewares. We have therefore decided to split the error middlewares in 2 different lists:
-
-- The error middleware queue for "normal" middleware routers is registered under the key `MiddlewareListServiceProvider::MIDDLEWARES_EXCEPTION_QUEUE`. This is a `\SPLPriorityQueue`.
-- The error middleware queue for Stratigility is registered under the key `MiddlewareListServiceProvider::MIDDLEWARES_STRATIGILITY_EXCEPTION_QUEUE`. This is a `\SPLPriorityQueue`.
-
+The middleware queue is registered under the key `MiddlewareListServiceProvider::MIDDLEWARES_QUEUE`. This is a `\SPLPriorityQueue`.
 
 Depending on the middleware you are registering, you generally have a fairly good idea of the order it should run compared to other middlewares.
 
