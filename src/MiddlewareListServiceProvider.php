@@ -21,9 +21,4 @@ class MiddlewareListServiceProvider implements ServiceProviderInterface
     {
         return new \SplPriorityQueue();
     }
-
-    public function getExtensions()
-    {
-        return [];
-    }
 }
